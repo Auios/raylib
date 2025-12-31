@@ -169,9 +169,9 @@ int main(void)
     // Load the font resources
     // NOTE: fontAsian is for asian languages,
     // fontEmoji is the emojis and fontDefault is used for everything else
-    Font fontDefault = LoadFont("resources/dejavu.fnt");
-    Font fontAsian = LoadFont("resources/noto_cjk.fnt");
-    Font fontEmoji = LoadFont("resources/symbola.fnt");
+    Font fontDefault = LoadFont("resources/dejavu.fnt"); // Requires "resources/dejavu.png"
+    Font fontAsian = LoadFont("resources/noto_cjk.fnt"); // Requires "resources/noto_cjk.png"
+    Font fontEmoji = LoadFont("resources/symbola.fnt"); // Requires "resources/symbola.png"
 
     Vector2 hoveredPos = { 0.0f, 0.0f };
     Vector2 selectedPos = { 0.0f, 0.0f };
@@ -210,7 +210,7 @@ int main(void)
 
             // Draw random emojis in the background
             //------------------------------------------------------------------------------
-            for (int i = 0; i < SIZEOF(emoji); ++i)
+            for (int i = 0; i < SIZEOF(emoji); i++)
             {
                 const char *txt = &emojiCodepoints[emoji[i].index];
                 Rectangle emojiRect = { position.x, position.y, (float)fontEmoji.baseSize, (float)fontEmoji.baseSize };
@@ -316,7 +316,7 @@ static void RandomizeEmoji(void)
     hovered = selected = -1;
     int start = GetRandomValue(45, 360);
 
-    for (int i = 0; i < SIZEOF(emoji); ++i)
+    for (int i = 0; i < SIZEOF(emoji); i++)
     {
         // 0-179 emoji codepoints (from emoji char array) each 4bytes + null char
         emoji[i].index = GetRandomValue(0, 179)*5;
